@@ -1,4 +1,3 @@
-// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBar from './components/NavBar';
@@ -6,7 +5,7 @@ import ItemListContainer from './components/ItemListContainer';
 import ProductDetail from './components/ProductDetail';
 import CartWidget from './components/CartWidget';
 import AboutUs from './components/AboutUs';
-import NotFound from './components/NotFound'; // Importa NotFound
+import NotFound from './components/NotFound'; 
 import { CartProvider } from './context/CartContext';
 
 const App = () => {
