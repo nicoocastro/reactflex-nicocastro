@@ -6,6 +6,10 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
   const addToCart = (product) => {
+    console.log('Producto añadido:', product);
+    if (typeof product.price !== 'number') {
+      console.error('El precio no es un número válido:', product.price);
+    }
     setCart(prevCart => [...prevCart, product]);
   };
 

@@ -1,12 +1,22 @@
 import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate
 
 const CartWidget = () => {
   const { cart, getCartCount, getCartTotal, removeFromCart } = useCart();
   const [isCartVisible, setIsCartVisible] = useState(false);
+  const navigate = useNavigate(); // Usa useNavigate para redireccionar
 
   const toggleCartVisibility = () => {
     setIsCartVisible(!isCartVisible);
+  };
+
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(price);
+  };
+
+  const handleCheckout = () => {
+    navigate('/checkout'); // Redirige al usuario a la página de checkout
   };
 
   return (
@@ -15,7 +25,7 @@ const CartWidget = () => {
         onClick={toggleCartVisibility} 
         style={{ fontSize: '1.5rem', cursor: 'pointer' }}
       >
-        🛒 {}
+        🛒
       </span>
       <span 
         style={{ 
@@ -54,8 +64,8 @@ const CartWidget = () => {
                 <div key={item.id} style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
                   <img src={item.imageUrl} alt={item.name} style={{ width: '100px', height: 'auto', borderRadius: '4px', marginRight: '0.5rem' }} />
                   <div style={{ flexGrow: 1 }}>
-                    <p>{item.name}</p>
-                    <p>{item.price} ARS</p>
+                    <p style={{ margin: '0', fontWeight: 'bold' }}>{item.name}</p>
+                    <p style={{ margin: '0' }}>{formatPrice(item.price)}</p>
                   </div>
                   <button 
                     onClick={() => removeFromCart(item.id)} 
@@ -66,8 +76,24 @@ const CartWidget = () => {
                 </div>
               ))}
               <div style={{ marginTop: '1rem', fontWeight: 'bold' }}>
-                Total: {getCartTotal()} ARS
+                Total: {formatPrice(getCartTotal())}
               </div>
+              <button 
+                style={{
+                  marginTop: '1rem',
+                  width: '100%',
+                  padding: '0.5rem',
+                  background: '#28a745',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontWeight: 'bold'
+                }}
+                onClick={handleCheckout} // Llama a handleCheckout para redirigir al usuario
+              >
+                Finalizar compra
+              </button>
             </>
           )}
         </div>

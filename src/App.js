@@ -5,7 +5,10 @@ import ItemListContainer from './components/ItemListContainer';
 import ProductDetail from './components/ProductDetail';
 import CartWidget from './components/CartWidget';
 import AboutUs from './components/AboutUs';
-import NotFound from './components/NotFound'; 
+import NotFound from './components/NotFound';
+import Checkout from './components/Checkout'; // Importa el componente Checkout
+import Confirmation from './components/Confirmation'; // Importa el componente Confirmation
+import OrderHistory from './components/OrderHistory'; // Importa el componente OrderHistory
 import { CartProvider } from './context/CartContext';
 
 const App = () => {
@@ -17,6 +20,9 @@ const App = () => {
           <Route path="/" element={<ItemListContainer />} />
           <Route path="/category/:category" element={<ItemListContainer />} />
           <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/checkout" element={<Checkout />} /> {/* Ruta para finalizar compra */}
+          <Route path="/confirmation" element={<Confirmation />} /> {/* Ruta para confirmación */}
+          <Route path="/order-history" element={<OrderHistory />} /> {/* Ruta para historial de compras */}
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="*" element={<NotFound />} /> {/* Ruta para 404 */}
         </Routes>

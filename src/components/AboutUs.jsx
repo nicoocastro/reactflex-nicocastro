@@ -1,4 +1,3 @@
-// src/components/AboutUs.jsx
 import React from 'react';
 
 const AboutUs = () => {
