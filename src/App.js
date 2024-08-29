@@ -6,9 +6,9 @@ import ProductDetail from './components/ProductDetail';
 import CartWidget from './components/CartWidget';
 import AboutUs from './components/AboutUs';
 import NotFound from './components/NotFound';
-import Checkout from './components/Checkout'; // Importa el componente Checkout
-import Confirmation from './components/Confirmation'; // Importa el componente Confirmation
-import OrderHistory from './components/OrderHistory'; // Importa el componente OrderHistory
+import Checkout from './components/Checkout'; 
+import Confirmation from './components/Confirmation'; 
+import OrderHistory from './components/OrderHistory'; 
 import { CartProvider } from './context/CartContext';
 
 const App = () => {

@@ -14,8 +14,6 @@ const Checkout = () => {
     setLoading(true);
 
     try {
-      // Aquí deberías manejar los datos del formulario y el proceso de pago
-      // Para este ejemplo, solo guardamos el carrito en Firestore
 
       const order = {
         items: cart,
