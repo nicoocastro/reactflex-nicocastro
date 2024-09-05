@@ -10,7 +10,7 @@ import Checkout from './components/Checkout';
 import Confirmation from './components/Confirmation'; 
 import OrderHistory from './components/OrderHistory'; 
 import { CartProvider } from './context/CartContext';
-
+//importamos todo
 const App = () => {
   return (
     <Router>
