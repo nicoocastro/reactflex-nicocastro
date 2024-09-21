@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductCard from './ProductCard';
-import { getDocs, collection } from 'firebase/firestore';
+import { getDocs, collection, query, where } from 'firebase/firestore';
 import { db } from '../servicios/firebaseConfig';
 
 const ItemListContainer = () => {
@@ -11,21 +11,16 @@ const ItemListContainer = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const productsCol = collection(db, 'data'); // Cambia 'productos' a 'data'
-        const productSnapshot = await getDocs(productsCol);
+        const productsCol = collection(db, 'data');
+        const q = category ? query(productsCol, where('category', '==', category)) : productsCol;
+        const productSnapshot = await getDocs(q);
         const productList = productSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        
-        // Filtra los productos por categoría si es necesario
-        if (category) {
-          setFilteredProducts(productList.filter(product => product.category === category));
-        } else {
-          setFilteredProducts(productList);
-        }
+        setFilteredProducts(productList);
       } catch (error) {
         console.error("Error al obtener los productos:", error);
       }
     };
-  
+
     fetchProducts();
   }, [category]);
 

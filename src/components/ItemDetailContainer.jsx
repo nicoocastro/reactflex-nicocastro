@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import products from '../data'; 
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../servicios/firebaseConfig';
 
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState(null);
   const { productId } = useParams();
 
   useEffect(() => {
-    // Simulando llamada a API
     const fetchProduct = async () => {
-      const foundProduct = products.find(prod => prod.id === parseInt(productId));
-      setProduct(foundProduct);
+      const productDoc = doc(db, 'data', productId);
+      const docSnap = await getDoc(productDoc);
+      if (docSnap.exists()) {
+        setProduct({ id: docSnap.id, ...docSnap.data() });
+      } else {
+        console.log('No such document!');
+      }
     };
 
     fetchProduct();

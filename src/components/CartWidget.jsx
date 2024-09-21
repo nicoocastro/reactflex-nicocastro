@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const CartWidget = () => {
   const { cart, getCartCount, getCartTotal, removeFromCart } = useCart();
   const [isCartVisible, setIsCartVisible] = useState(false);
-  const navigate = useNavigate(); // Usa useNavigate para redireccionar
+  const navigate = useNavigate(); 
 
   const toggleCartVisibility = () => {
     setIsCartVisible(!isCartVisible);
@@ -16,7 +16,7 @@ const CartWidget = () => {
   };
 
   const handleCheckout = () => {
-    navigate('/checkout'); // Redirige al usuario a la página de checkout
+    navigate('/checkout'); 
   };
 
   return (
